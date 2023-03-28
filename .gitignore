@@ -131,6 +131,7 @@ media
 static
 cache
 original_template_site*
+!original_template_site_ECOURSES.zip
 images
 
 # Secrets
