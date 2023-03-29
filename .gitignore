@@ -133,6 +133,7 @@ cache
 original_template_site*
 !original_template_site_ECOURSES.zip
 images
+!databases_models/images
 
 # Secrets
 .env
