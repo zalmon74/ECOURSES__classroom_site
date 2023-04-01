@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils.safestring import SafeText, mark_safe
 
 from .help_functions import user_photo_upload_to
 from .managers import CustomUserManager
@@ -47,7 +48,7 @@ class CustomUser(AbstractUser):
         verbose_name_plural = 'Пользователи'
 
     def __str__(self):
-        return self.email
+        return self.get_full_name_with_email()
 
     def get_full_name(self) -> str:
         return ' '.join([name for name in [
@@ -81,3 +82,12 @@ class UserPhoto(models.Model):
     def __str__(self) -> str:
         return self.user.get_full_name_with_email()
     
+    def image_tag(self) -> SafeText:
+        """ Формирует html-тег с изображением
+
+        Returns:
+            SafeText: Сформированный тег
+        """
+        return mark_safe('<img src="%s" width="100" height="100" />' % (self.photo.url))
+
+    image_tag.short_description = 'Фото'
