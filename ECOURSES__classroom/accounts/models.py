@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+from .help_functions import user_photo_upload_to
 from .managers import CustomUserManager
 from .validators import *
 
@@ -46,4 +47,37 @@ class CustomUser(AbstractUser):
         verbose_name_plural = 'Пользователи'
 
     def __str__(self):
-        return self.username
+        return self.email
+
+    def get_full_name(self) -> str:
+        return ' '.join([name for name in [
+            self.first_name,
+            self.second_name,
+            self.last_name
+        ] if name])
+    
+    def get_full_name_with_email(self) -> str:
+        return self.get_full_name() + f' ({self.email})'
+    
+
+class UserPhoto(models.Model):
+    """ Содержит фотографии для профиля пользователя
+    """
+    user = models.OneToOneField(
+        CustomUser,
+        models.PROTECT,
+        db_index=True,
+        verbose_name='Пользователь',
+    )
+    photo = models.ImageField(
+        upload_to=user_photo_upload_to,
+        verbose_name='Фотография пользователя',
+    )
+    
+    class Meta:
+        verbose_name = 'Фото пользователя'
+        verbose_name_plural = 'Фото пользователей'
+    
+    def __str__(self) -> str:
+        return self.user.get_full_name_with_email()
+    
