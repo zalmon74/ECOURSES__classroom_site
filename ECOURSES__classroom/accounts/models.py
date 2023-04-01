@@ -26,13 +26,13 @@ class CustomUser(AbstractUser):
         max_length=50,
         validators=[validation_first_second_sur_name, ],
         verbose_name='Фамилия',
-        help_text='Фамилия пользователя может иметь максимум 50 символов и содержать только русские буквы'
+        help_text='Фамилия пользователя может иметь максимум 50 символов и содержать только русские и латинские буквы'
     )
     surname = models.CharField(
         max_length=50,
         validators=[validation_first_second_sur_name, ],
         verbose_name='Отчество',
-        help_text='Отчество пользователя может иметь максимум 50 символов и содержать только русские буквы',
+        help_text='Отчество пользователя может иметь максимум 50 символов и содержать только русские и латинские буквы',
         default='',
     )
     
