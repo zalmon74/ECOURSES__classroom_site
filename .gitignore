@@ -129,6 +129,7 @@ setup.cfg
 
 media
 static
+!static/css/admin.css
 cache
 original_template_site*
 !original_template_site_ECOURSES.zip
