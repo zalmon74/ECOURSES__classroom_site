@@ -137,3 +137,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Custom Auth
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# My settings
+
+NAME_ADMIN_GROUP = 'admin'
+NAME_PARTNER_GROUP = 'partner'
+NAME_TEACHER_GROUP = 'teacher'
+NAME_STUDENT_GROUP = 'student'
+NAME_NOT_VERIFIED_PARTNER_GROUP = 'not_verified_partner'
+NAME_NOT_VERIFIED_TEACHER_GROUP = 'not_verified_teacher'
+
+ALL_GROUPS = {
+    # Name: Name_BD
+    NAME_ADMIN_GROUP: 'Администратор',
+    NAME_PARTNER_GROUP: 'Партнер',
+    NAME_TEACHER_GROUP: 'Учитель',
+    NAME_STUDENT_GROUP: 'Студент',
+    NAME_NOT_VERIFIED_PARTNER_GROUP: 'Не подтвержденный партнер',
+    NAME_NOT_VERIFIED_TEACHER_GROUP: 'Не подтвержденный учитель',
+}
