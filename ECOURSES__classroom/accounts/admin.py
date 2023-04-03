@@ -72,10 +72,6 @@ class AdminCustomUser(admin.ModelAdmin):
             )
         }
 
-    def get_inline_instances(self, request, obj):
-        print(dir(super().get_inline_instances(request, obj)))
-        return super().get_inline_instances(request, obj)
-
 
 @admin.register(UserPhoto)
 class AdminUserPhoto(admin.ModelAdmin):
