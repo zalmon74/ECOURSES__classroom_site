@@ -1,7 +1,9 @@
 from typing import Any
 
+from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
-from django.http import HttpResponse
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
@@ -45,3 +47,16 @@ class UserLoginView(LoginView):
         context['title'] = 'Авторизация'
         context['text_button'] = 'Войти'
         return context
+
+
+def logout_user(request: HttpRequest) -> HttpResponseRedirect:
+    """ Выход пользователя
+
+    Args:
+        request (HttpRequest): Запрос
+
+    Returns:
+        HttpResponseRedirect: Ответ с перенапревлением
+    """
+    logout(request)
+    return redirect('index')

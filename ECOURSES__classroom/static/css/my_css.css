@@ -1,0 +1,11 @@
+.nav-item-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
+}
+
+
