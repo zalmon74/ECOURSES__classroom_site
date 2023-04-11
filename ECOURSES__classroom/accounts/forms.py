@@ -1,6 +1,6 @@
 from django import forms
 from django.conf import settings
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.utils.safestring import mark_safe
 
 from .models import CustomUser
@@ -100,3 +100,32 @@ class UserRegistrationModelForm(UserCreationForm):
                 }
             ),
         }
+
+
+class UserAuthenticationForm(AuthenticationForm):
+    """ Форма дла аутентификации пользователя
+    """
+    
+    username = forms.EmailField(
+        label='Email',
+        required=True,
+        widget=forms.EmailInput(
+            attrs={
+                'class': 'form-control border-0 p-4', 
+                'placeholder': 'Email'
+            }
+        )
+    )
+    password = forms.CharField(
+        label='Пароль',
+        required=True,
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control border-0 p-4', 
+                'placeholder': 'Пароль'
+            }
+        )
+    )
+    
+    class Meta:
+        model = CustomUser
