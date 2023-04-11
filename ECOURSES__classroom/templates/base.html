@@ -26,6 +26,7 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/my_css.css' %}" rel="stylesheet">
 {% endblock head %}
 </head>
 
@@ -123,7 +124,14 @@
                             </div>
                             <a href="contact.html" class="nav-item nav-link active">Contact</a>
                         </div>
-                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="">Join Now</a>
+                        {% if user.is_authenticated %}
+                            <div class="nav-item-div">
+                                <a class="" href="">{{ user }}</a>
+                                <a class="btn btn-dark py-0 px-4 ml-auto mr-auto d-none d-lg-block" href="{% url 'user_logout' %}">Выйти</a>
+                            </div>
+                        {% else %}
+                            <a class="btn btn-primary py-1 px-4 ml-auto d-none d-lg-block" href="">Join Now</a>
+                        {% endif %}
                     </div>
                 </nav>
             </div>
