@@ -37,5 +37,13 @@ def user_registration(
     if created:
         group = Group.objects.get(name=instance.role)
         instance.groups.add(group)
+    
+    # Добавляем пользователя в группу администраторов, если он имеет статус
+    # администратора
+    if instance.is_staff:
+        instance.groups.clear()
+        group = Group.objects.get(name=settings.NAME_DB_ADMIN_GROUP)
+        instance.groups.add(group)
+        
 
 
