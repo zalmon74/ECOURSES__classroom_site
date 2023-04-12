@@ -112,7 +112,8 @@ class UserAuthenticationForm(AuthenticationForm):
         widget=forms.EmailInput(
             attrs={
                 'class': 'form-control border-0 p-4', 
-                'placeholder': 'Email'
+                'placeholder': 'Email',
+                'autofocus': ''
             }
         )
     )

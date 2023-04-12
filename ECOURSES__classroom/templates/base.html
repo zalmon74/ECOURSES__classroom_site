@@ -130,7 +130,10 @@
                                 <a class="btn btn-dark py-0 px-4 ml-auto mr-auto d-none d-lg-block" href="{% url 'user_logout' %}">Выйти</a>
                             </div>
                         {% else %}
-                            <a class="btn btn-primary py-1 px-4 ml-auto d-none d-lg-block" href="">Join Now</a>
+                            <div class="nav-item-div">
+                                <a class="btn btn-primary py-0 px-4 ml-auto d-none d-lg-block" href="{% url 'user_registration' %}">Регистрация</a>
+                                <a class="btn btn-primary py-0 px-4 mt-1 d-none d-lg-block" href="{% url 'user_login' %}">Войти</a>
+                            </div>
                         {% endif %}
                     </div>
                 </nav>
