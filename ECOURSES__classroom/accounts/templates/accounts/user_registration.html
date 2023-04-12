@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load accounts_tags %}
+
+{% block title %}Регистрация | ECOURSES{% endblock title %}
+
+{% block header_context %}{% endblock header_context %}
+
+{% block context %}
+
+    {% show_form form title text_button %}
+
+{% endblock context %}

@@ -62,7 +62,9 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -140,19 +142,26 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # My settings
 
-NAME_ADMIN_GROUP = 'admin'
-NAME_PARTNER_GROUP = 'partner'
-NAME_TEACHER_GROUP = 'teacher'
-NAME_STUDENT_GROUP = 'student'
-NAME_NOT_VERIFIED_PARTNER_GROUP = 'not_verified_partner'
-NAME_NOT_VERIFIED_TEACHER_GROUP = 'not_verified_teacher'
+NAME_DB_ADMIN_GROUP = 'admin'
+NAME_ADMIN_GROUP = 'Администратор'
+NAME_DB_PARTNER_GROUP = 'partner'
+NAME_PARTNER_GROUP = 'Партнер'
+NAME_DB_TEACHER_GROUP = 'teacher'
+NAME_TEACHER_GROUP = 'Учитель'
+NAME_DB_STUDENT_GROUP = 'student'
+NAME_STUDENT_GROUP = 'Студент'
+
+NAME_DB_NOT_VERIFIED_PARTNER_GROUP = 'not_verified_partner'
+NAME_NOT_VERIFIED_PARTNER_GROUP = 'Не подтвержденный партнер'
+NAME_DB_NOT_VERIFIED_TEACHER_GROUP = 'not_verified_teacher'
+NAME_NOT_VERIFIED_TEACHER_GROUP = 'Не подтвержденный учитель'
 
 ALL_GROUPS = {
-    # Name: Name_BD
-    NAME_ADMIN_GROUP: 'Администратор',
-    NAME_PARTNER_GROUP: 'Партнер',
-    NAME_TEACHER_GROUP: 'Учитель',
-    NAME_STUDENT_GROUP: 'Студент',
-    NAME_NOT_VERIFIED_PARTNER_GROUP: 'Не подтвержденный партнер',
-    NAME_NOT_VERIFIED_TEACHER_GROUP: 'Не подтвержденный учитель',
+    # Name_DB: Name
+    NAME_DB_ADMIN_GROUP: NAME_ADMIN_GROUP,
+    NAME_DB_PARTNER_GROUP: NAME_PARTNER_GROUP,
+    NAME_DB_TEACHER_GROUP: NAME_TEACHER_GROUP,
+    NAME_DB_STUDENT_GROUP: NAME_STUDENT_GROUP,
+    NAME_DB_NOT_VERIFIED_PARTNER_GROUP: NAME_NOT_VERIFIED_PARTNER_GROUP,
+    NAME_DB_NOT_VERIFIED_TEACHER_GROUP: NAME_NOT_VERIFIED_TEACHER_GROUP,
 }
