@@ -1,4 +1,5 @@
 from django import template
+from django.conf import settings
 
 register = template.Library()
 
@@ -12,15 +13,15 @@ def show_top_bar() -> dict:
     """
     top_bar = [
         {'name': 'Офис', 
-         'text': 'Улица 123, Красноярск, РФ', 
+         'text': settings.TEXT_ADRESS_ABOUT_CITY, 
          'classimage': 'fa-map-marker-alt'
         },
         {'name': 'Email', 
-         'text': 'zalmon74@yandex.ru', 
+         'text': settings.TEXT_ABOUT_EMAIL, 
          'classimage': 'fa-envelope'
         },
         {'name': 'Связаться', 
-         'text': '+7(123) 456-78-90', 
+         'text': settings.TEXT_ABOUT_NUMBER_PHONE, 
          'classimage': 'fa-phone'
         },
     ]
