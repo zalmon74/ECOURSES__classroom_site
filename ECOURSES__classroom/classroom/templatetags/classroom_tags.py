@@ -236,3 +236,18 @@ def show_index_carousel() -> dict:
     }
 
 
+@register.inclusion_tag('classroom/tags/show_index_about.html')
+def show_index_about() -> dict():
+    """ Формирует список с данными для "о нас" на главной странице
+
+    Returns:
+        dict: Словарь, который содержит список с элементами для страницы
+    """
+    info = {
+        'title': 'Инновационный способ обучения',
+        'text': 'Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo dolores et sit ipsum rebum, sadipscing et erat eirmod diam kasd labore clita est. Diam sanctus gubergren sit rebum clita amet, sea est sea vero sed et. Sadipscing labore tempor at sit dolor clita consetetur diam. Diam ut diam tempor no et, lorem dolore invidunt no nonumy stet ea labore, dolor justo et sit gubergren diam sed sed no ipsum. Sit tempor ut nonumy elitr dolores justo aliquyam ipsum stet',
+        'text_button': 'Читать',
+        'url_name': 'index',
+        'static_image': 'img/about.jpg',
+    }
+    return {'element': info}
