@@ -251,3 +251,56 @@ def show_index_about() -> dict():
         'static_image': 'img/about.jpg',
     }
     return {'element': info}
+
+
+@register.inclusion_tag('classroom/tags/show_index_categories.html')
+def show_index_categories() -> dict():
+    """ Формирует список с данными для "популярные направления" на главной 
+        странице
+
+    Returns:
+        dict: Словарь, который содержит список с элементами для страницы
+    """
+    lst_categories = [
+        {'name': 'Веб дизайн',
+         'count_courses': 11,
+         'url_name': 'index',
+         'static_image': 'img/cat-1.jpg',
+        },
+        {'name': 'Разработка',
+         'count_courses': 22,
+         'url_name': 'index',
+         'static_image': 'img/cat-2.jpg',
+        },
+        {'name': 'Дизайн игр',
+         'count_courses': 33,
+         'url_name': 'index',
+         'static_image': 'img/cat-3.jpg',
+        },
+        {'name': 'Дизайн приложений',
+         'count_courses': 44,
+         'url_name': 'index',
+         'static_image': 'img/cat-4.jpg',
+        },
+        {'name': 'Маркетинг',
+         'count_courses': 55,
+         'url_name': 'index',
+         'static_image': 'img/cat-5.jpg',
+        },
+        {'name': 'Тестирование',
+         'count_courses': 66,
+         'url_name': 'index',
+         'static_image': 'img/cat-6.jpg',
+        },
+        {'name': 'Автор контента',
+         'count_courses': 77,
+         'url_name': 'index',
+         'static_image': 'img/cat-7.jpg',
+        },
+        {'name': 'SEO-продвижение',
+         'count_courses': 88,
+         'url_name': 'index',
+         'static_image': 'img/cat-8.jpg',
+        },
+    ]
+    return {'lst_categories': lst_categories}
