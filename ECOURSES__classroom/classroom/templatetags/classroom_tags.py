@@ -198,3 +198,41 @@ def show_footer_get_in_touch() -> dict:
         'lst_get_in_touch': lst_get_in_touch, 
         'lst_links_get_in_touch': lst_links_get_in_touch
     }
+
+
+@register.inclusion_tag('classroom/tags/show_index_carousel.html')
+def show_index_carousel() -> dict:
+    """ Формирует список с данными для "карусели" на главной странице
+
+    Returns:
+        dict: Словарь, который содержит список с элементами
+    """
+    lst_carousel = [
+        {'small_title': 'Лучшие онлайн курсы',
+         'title': 'Лучшее образование из вашего дома',
+         'text_button': 'Читать',
+         'url_name': 'index',
+         'static_image': 'img/carousel-1.jpg',
+         'number': 0,
+        },
+        {'small_title': 'Лучшие онлайн курсы',
+         'title': 'Лучшая платформа для онлайн-обучения',
+         'text_button': 'Читать',
+         'url_name': 'index',
+         'static_image': 'img/carousel-2.jpg',
+         'number': 1,
+        },
+        {'small_title': 'Лучшие онлайн курсы',
+         'title': 'Новый способ учиться дома',
+         'text_button': 'Читать',
+         'url_name': 'index',
+         'static_image': 'img/carousel-3.jpg',
+         'number': 2,
+        },
+    ]
+    return {
+        'lst_carousel': lst_carousel, 
+        'range_carousel': range(len(lst_carousel)),
+    }
+
+
