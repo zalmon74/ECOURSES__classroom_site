@@ -170,3 +170,6 @@ ALL_GROUPS = {
 TEXT_ADRESS_ABOUT_CITY = 'Улица 123, Красноярск, РФ'
 TEXT_ABOUT_EMAIL = 'zalmon74@yandex.ru'
 TEXT_ABOUT_NUMBER_PHONE = '+7(123) 456-78-90'
+
+URL_GITHUB_AUTHOR = 'https://github.com/zalmon74'
+URL_VK_AUTHOR = 'https://vk.com/zalmon74'

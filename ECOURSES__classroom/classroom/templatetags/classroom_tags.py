@@ -155,3 +155,46 @@ def show_nav_bar_subjects_element(element: dict) -> dict:
         dict: Содержит элемент, который необходимо отобразить
     """
     return {'element': element}
+
+
+@register.inclusion_tag('classroom/tags/footer/show_footer.html')
+def show_footer() -> dict:
+    lst_coureses = [
+        {'name': 'Веб дизайн', 'url_name': 'index'},
+        {'name': 'Дизайн приложений', 'url_name': 'index'},
+        {'name': 'Маркетинг', 'url_name': 'index'},
+        {'name': 'Тестирование', 'url_name': 'index'},
+        {'name': 'SEO', 'url_name': 'index'},
+    ]
+    return {'lst_coureses': lst_coureses}
+
+
+@register.inclusion_tag('classroom/tags/footer/show_footer_get_in_touch.html')
+def show_footer_get_in_touch() -> dict:
+    """ Формирует список с данными для "связаться с нами" в футуре
+
+    Returns:
+        dict: Словарь, который содержит список с элементами
+    """
+    lst_get_in_touch = [
+        {'name': 'Офис', 
+         'text': settings.TEXT_ADRESS_ABOUT_CITY, 
+         'classimage': 'fa-map-marker-alt'
+        },
+        {'name': 'Email', 
+         'text': settings.TEXT_ABOUT_EMAIL, 
+         'classimage': 'fa-envelope'
+        },
+        {'name': 'Связаться', 
+         'text': settings.TEXT_ABOUT_NUMBER_PHONE, 
+         'classimage': 'fa-phone-alt'
+        },
+    ]
+    lst_links_get_in_touch = [
+        {'class': 'fa-github', 'url_name': settings.URL_GITHUB_AUTHOR},
+        {'class': 'fa-vk', 'url_name': settings.URL_VK_AUTHOR},
+    ]    
+    return {
+        'lst_get_in_touch': lst_get_in_touch, 
+        'lst_links_get_in_touch': lst_links_get_in_touch
+    }

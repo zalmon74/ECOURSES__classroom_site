@@ -1,0 +1,39 @@
+{% load classroom_tags %}
+
+<div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
+    <div class="row pt-5">
+        <div class="col-lg-7 col-md-12">
+            <div class="row">
+                {% show_footer_get_in_touch %}
+                <div class="col-md-6 mb-5">
+                    <h5 class="text-primary text-uppercase mb-4" style="letter-spacing: 5px;">Наши курсы</h5>
+                    <div class="d-flex flex-column justify-content-start">
+                        {% for el in lst_coureses %}
+                            <a class="text-white mb-2" href="{% url el.url_name %}"><i class="fa fa-angle-right mr-2"></i>{{ el.name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 col-md-12 mb-5">
+            <h5 class="text-primary text-uppercase mb-4" style="letter-spacing: 5px;">Подписаться на новости</h5>
+            <p>Rebum labore lorem dolores kasd est, et ipsum amet et at kasd, ipsum sea tempor magna tempor. Accu kasd sed ea duo ipsum. Dolor duo eirmod sea justo no lorem est diam</p>
+            <div class="w-100">
+                <div class="input-group">
+                    <input type="text" class="form-control border-light" style="padding: 30px;" placeholder="Email">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary px-4">Войти</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
+    <div class="row">
+        <div class="col-lg-6 text-center text-md-left mb-3 mb-md-0">
+            <p class="m-0 text-white">&copy; <a href="#">Domain Name</a>. All Rights Reserved. Designed by <a href="https://htmlcodex.com">HTML Codex</a>
+            </p>
+        </div>
+    </div>
+</div>
