@@ -439,3 +439,28 @@ def show_index_testimonial() -> dict:
         },
     ]
     return {'reviews': reviews}
+
+
+@register.inclusion_tag('classroom/tags/show_index_blog.html')
+def show_index_blog() -> dict:
+    """ Формирует список с данными для "Последние публикации" на главной 
+        странице
+
+    Returns:
+        dict: Словарь, который содержит список с элементами для страницы
+    """
+    publications = [
+        {'title': 'Lorem elitr magna stet eirmod labore amet labore clita at ut clita',
+         'date': '19:09:2022',
+         'static_image': 'img/blog-1.jpg',
+        },
+        {'title': 'Lorem elitr magna stet eirmod labore amet labore clita at ut clita',
+         'date': '21:02:2021',
+         'static_image': 'img/blog-2.jpg',
+        },
+        {'title': 'Lorem elitr magna stet eirmod labore amet labore clita at ut clita',
+         'date': '01:12:2020',
+         'static_image': 'img/blog-3.jpg',
+        },
+    ]
+    return {'publications': publications}
