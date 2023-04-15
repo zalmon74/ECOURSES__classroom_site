@@ -49,12 +49,23 @@ class AdminCustomUser(admin.ModelAdmin):
                 'second_name', 
                 'surname', 
                 'mail_confirmation',
+                'url_vk',
+                'url_email',
+                'url_github',
             )}
         ),
         ('Права доступа', {'fields': ('is_staff', 'is_active', 'groups', 'user_permissions')}),
         ('Важные даты', {'fields': ('last_login', 'date_joined')}),
     )
-    readonly_fields = ('password', 'mail_confirmation', 'last_login', 'date_joined')
+    readonly_fields = (
+        'password', 
+        'mail_confirmation', 
+        'last_login', 
+        'date_joined',
+        'url_vk',
+        'url_email',
+        'url_github',
+    )
     
     list_filter = ('mail_confirmation', 'is_staff')
     search_fields = ('email', 'first_name', 'second_name', 'surname')

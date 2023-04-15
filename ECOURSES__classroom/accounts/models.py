@@ -36,6 +36,24 @@ class CustomUser(AbstractUser):
         help_text='Отчество пользователя может иметь максимум 50 символов и содержать только русские и латинские буквы',
         default='',
     )
+    url_vk = models.URLField(
+        verbose_name='Ссылка на профиль в VK',
+        validators=[validation_url_vk, ],
+        blank=True,
+        null=True,
+    )
+    url_email = models.URLField(
+        verbose_name='Ссылка на профиль в почтовом сервисе',
+        validators=[validation_url_mail, ],
+        blank=True,
+        null=True,
+    )
+    url_github = models.URLField(
+        verbose_name='Ссылка на профиль на github',
+        validators=[validation_url_github, ],
+        blank=True,
+        null=True,
+    )
     
     USERNAME_FIELD = 'email'
 
