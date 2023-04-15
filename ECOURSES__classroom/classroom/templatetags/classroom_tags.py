@@ -1,3 +1,4 @@
+from accounts.models import CustomUser
 from django import template
 from django.conf import settings
 
@@ -29,8 +30,11 @@ def show_top_bar() -> dict:
 
 
 @register.inclusion_tag('classroom/tags/nav_bar/show_nav_bar.html')
-def show_nav_bar() -> dict:
-    """ Формирует список с данными для навигационной панели
+def show_nav_bar(user: CustomUser) -> dict:
+    """Формирует список с данными для навигационной панели
+
+    Args:
+        user (CustomUser): Объект с текущим пользователем
 
     Returns:
         dict: Словарь, который хранит список с данными для навигационной панели
@@ -116,7 +120,11 @@ def show_nav_bar() -> dict:
          'lst_drop': []
         },
     ]
-    return {'nav_bar': nav_bar, 'nav_bar_subjects': nav_bar_subjects,}
+    return {
+        'nav_bar': nav_bar, 
+        'nav_bar_subjects': nav_bar_subjects, 
+        'user': user
+    }
 
 
 @register.inclusion_tag('classroom/tags/nav_bar/show_nav_bar_element.html')
