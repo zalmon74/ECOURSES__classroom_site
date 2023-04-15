@@ -371,3 +371,43 @@ def show_index_courses() -> dict:
         },
     ]
     return {'lst_courses': lst_courses,}
+
+
+@register.inclusion_tag('classroom/tags/show_index_our_teachers.html')
+def show_index_our_teachers() -> dict:
+    """ Формирует список с данными для "Лучших учителей" на главной  странице
+
+    Returns:
+        dict: Словарь, который содержит список с элементами для страницы
+    """
+    teachers = [
+        {'name': 'Джули Джо',
+         'profession': 'Веб дизайнер',
+         'static_image': 'img/team-1.jpg',
+         'href_vk': 'https://vk.com/',
+         'href_mail': 'https://gmail.com/',
+         'href_github': 'https://github.com/'
+        },
+        {'name': 'Джон Дое',
+         'profession': 'Разработчик',
+         'static_image': 'img/team-2.jpg',
+         'href_vk': 'https://vk.com/',
+         'href_mail': 'https://gmail.com/',
+         'href_github': 'https://github.com/'
+        },
+        {'name': 'Редйджин Шру',
+         'profession': 'QA',
+         'static_image': 'img/team-3.jpg',
+         'href_vk': 'https://vk.com/',
+         'href_mail': 'https://gmail.com/',
+         'href_github': 'https://github.com/'
+        },
+        {'name': 'Брайн Дро',
+         'profession': 'Dev-ops инженер',
+         'static_image': 'img/team-4.jpg',
+         'href_vk': 'https://vk.com/',
+         'href_mail': 'https://gmail.com/',
+         'href_github': 'https://github.com/'
+        },
+    ]
+    return {'teachers': teachers}
