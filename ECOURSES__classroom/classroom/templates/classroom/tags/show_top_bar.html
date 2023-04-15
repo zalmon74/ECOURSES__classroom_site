@@ -1,0 +1,20 @@
+<div class="container-fluid d-none d-lg-block">
+    <div class="row align-items-center py-4 px-xl-5">
+        <div class="col-lg-3">
+            <a href="{% url 'index' %}" class="text-decoration-none">
+                <h1 class="m-0"><span class="text-primary">E</span>COURSES</h1>
+            </a>
+        </div>
+        {% for el in top_bar %}
+            <div class="col-lg-3 text-right">
+                <div class="d-inline-flex align-items-center">
+                    <i class="fa fa-2x {{ el.classimage }} text-primary mr-3"></i>
+                    <div class="text-left">
+                        <h6 class="font-weight-semi-bold mb-1">{{ el.name }}</h6>
+                        <small>{{ el.text }}</small>
+                    </div>
+                </div>
+            </div>    
+        {% endfor %}
+    </div>
+</div>

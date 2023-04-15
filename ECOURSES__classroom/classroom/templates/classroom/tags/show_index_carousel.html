@@ -1,0 +1,33 @@
+{% load static %}
+
+<div class="container-fluid p-0 pb-5 mb-5">
+    <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+        <ol class="carousel-indicators">
+        {% for num in range_carousel %}
+            {% if num == 0 %}
+                <li data-target="#header-carousel" data-slide-to="{{ num }}" class="active"></li>   
+            {% else %}
+                <li data-target="#header-carousel" data-slide-to="{{ num }}"></li>   
+            {% endif %}
+        {% endfor %}
+        </ol>
+        <div class="carousel-inner">
+            {% for el in lst_carousel %}
+                {% if el.number == 0 %}
+                    <div class="carousel-item active" style="min-height: 300px;">
+                {% else %}
+                    <div class="carousel-item" style="min-height: 300px;">
+                {% endif %}
+                    <img class="position-relative w-100" src="{% static el.static_image %}" style="min-height: 300px; object-fit: cover;">
+                    <div class="carousel-caption d-flex align-items-center justify-content-center">
+                        <div class="p-5" style="width: 100%; max-width: 900px;">
+                            <h5 class="text-white text-uppercase mb-md-3">{{ el.small_title }}</h5>
+                            <h1 class="display-3 text-white mb-md-4">{{ el.title }}</h1>
+                            <a href="{% url el.url_name %}" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">{{ el.text_button }}</a>
+                        </div>
+                    </div>
+                </div>    
+            {% endfor %}
+        </div>
+    </div>
+</div>

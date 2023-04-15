@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load classroom_tags %}
+
+{% block header_context %}{% endblock header_context %}
+
+
+{% block context %}
+    <!-- Carousel Start -->
+    {% show_index_carousel %}
+    <!-- Carousel End -->
+
+    <!-- About Start -->
+    {% show_index_about %}
+    <!-- About End -->
+
+    <!-- Category Start -->
+    {% show_index_categories %}
+    <!-- Category Start -->
+
+    <!-- Courses Start -->
+    {% show_index_courses %}
+    <!-- Courses End -->
+
+    <!-- Team Start -->
+    {% show_index_our_teachers %}
+    <!-- Team End -->
+
+    <!-- Testimonial Start -->
+    {% show_index_testimonial %}
+    <!-- Testimonial End -->
+
+
+    <!-- Blog Start -->
+    {% show_index_blog %}
+    <!-- Blog End -->
+
+{% endblock context %}
+
+

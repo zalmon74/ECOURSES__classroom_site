@@ -1,0 +1,19 @@
+{% load static %}
+
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-5">
+                <img class="img-fluid rounded mb-4 mb-lg-0" src="{% static element.static_image %}" alt="">
+            </div>
+            <div class="col-lg-7">
+                <div class="text-left mb-4">
+                    <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">О нас</h5>
+                    <h1>{{ element.title }}</h1>
+                </div>
+                <p>{{ element.text }}</p>
+                <a href="{% url element.url_name %}" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">{{ element.text_button }}</a>
+            </div>
+        </div>
+    </div>
+</div>

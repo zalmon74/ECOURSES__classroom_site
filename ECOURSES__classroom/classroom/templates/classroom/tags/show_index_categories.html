@@ -1,0 +1,25 @@
+{% load static %}
+
+<div class="container-fluid py-5">
+    <div class="container pt-5 pb-3">
+        <div class="text-center mb-5">
+            <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Направления</h5>
+            <h1>Исследуйте популярные направления</h1>
+        </div>
+        <div class="row">
+            
+            {% for el in lst_categories %}
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="cat-item position-relative overflow-hidden rounded mb-2">
+                        <img class="img-fluid" src="{% static el.static_image %}" alt="">
+                        <a class="cat-overlay text-white text-decoration-none" href="">
+                            <h4 class="text-white font-weight-medium">{{ el.name }}</h4>
+                            <span>{{ el.count_courses }} курсов</span>
+                        </a>
+                    </div>
+                </div>    
+            {% endfor %}
+            
+        </div>
+    </div>
+</div>

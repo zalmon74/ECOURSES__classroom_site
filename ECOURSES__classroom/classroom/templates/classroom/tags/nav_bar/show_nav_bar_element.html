@@ -1,0 +1,14 @@
+{% load classroom_tags %}
+
+{% if element.f_drop %}
+    <div class="nav-item dropdown">
+        <a href="{% url element.url_name %}" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ element.name }}</a>
+        <div class="dropdown-menu rounded-0 m-0">
+            {% for el_d in element.lst_drop %}
+                {% show_nav_bar_element el_d %}
+            {% endfor %}
+        </div>
+    </div>
+{% else %}
+    <a href="{% url element.url_name %}" class="nav-item nav-link">{{ element.name }}</a>
+{% endif %}

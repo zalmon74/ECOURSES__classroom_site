@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # My
     'accounts.apps.AccountsConfig',
+    'classroom.apps.ClassroomConfig',
 ]
 
 MIDDLEWARE = [
@@ -165,3 +166,10 @@ ALL_GROUPS = {
     NAME_DB_NOT_VERIFIED_PARTNER_GROUP: NAME_NOT_VERIFIED_PARTNER_GROUP,
     NAME_DB_NOT_VERIFIED_TEACHER_GROUP: NAME_NOT_VERIFIED_TEACHER_GROUP,
 }
+
+TEXT_ADRESS_ABOUT_CITY = 'Улица 123, Красноярск, РФ'
+TEXT_ABOUT_EMAIL = 'zalmon74@yandex.ru'
+TEXT_ABOUT_NUMBER_PHONE = '+7(123) 456-78-90'
+
+URL_GITHUB_AUTHOR = 'https://github.com/zalmon74'
+URL_VK_AUTHOR = 'https://vk.com/zalmon74'

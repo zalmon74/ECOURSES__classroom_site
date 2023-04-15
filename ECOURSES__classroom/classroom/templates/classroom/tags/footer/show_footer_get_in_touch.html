@@ -1,0 +1,13 @@
+<div class="col-md-6 mb-5">
+    <h5 class="text-primary text-uppercase mb-4" style="letter-spacing: 5px;">Связаться с нами</h5>
+    {% for el in lst_get_in_touch %}
+        <p><i class="fa {{ el.classimage }} mr-2"></i>{{ el.text }}</p>
+    {% endfor %}
+    
+    
+    <div class="d-flex justify-content-start mt-4">
+        {% for el in lst_links_get_in_touch %}
+            <a class="btn btn-outline-light btn-square mr-2" href="{{ el.url_name }}" target="_blank"><i class="fab {{ el.class }}"></i></a>
+        {% endfor %}
+    </div>
+</div>
