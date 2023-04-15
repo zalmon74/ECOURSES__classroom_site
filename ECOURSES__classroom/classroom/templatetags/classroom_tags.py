@@ -411,3 +411,31 @@ def show_index_our_teachers() -> dict:
         },
     ]
     return {'teachers': teachers}
+
+
+@register.inclusion_tag('classroom/tags/show_index_testimonial.html')
+def show_index_testimonial() -> dict:
+    """ Формирует список с данными для "Что говорят о нас ученики" на главной 
+        странице
+
+    Returns:
+        dict: Словарь, который содержит список с элементами для страницы
+    """
+    reviews = [
+        {'name': 'Эпископ Транов',
+         'profession': 'Разработчик',
+         'text': 'Dolor eirmod diam stet kasd sed. Aliqu rebum est eos. Rebum elitr dolore et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam',
+         'static_image': 'img/testimonial-1.jpg',
+        },
+        {'name': 'Джули Робин',
+         'profession': 'HR-специалист',
+         'text': 'Dolor eirmod diam stet kasd sed. Aliqu rebum est eos. Rebum elitr dolore et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam',
+         'static_image': 'img/testimonial-2.jpg',
+        },
+        {'name': 'Врундель Марнор',
+         'profession': 'Маркетинг',
+         'text': 'Dolor eirmod diam stet kasd sed. Aliqu rebum est eos. Rebum elitr dolore et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam',
+         'static_image': 'img/testimonial-3.jpg',
+        },
+    ]
+    return {'reviews': reviews}
