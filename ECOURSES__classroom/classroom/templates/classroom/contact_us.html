@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load accounts_tags %}
+
+
+{% block title %}{{ title }} | ECOURSES{% endblock title %}
+    
+
+{% block header_context %}{% endblock header_context %}
+
+{% block context %}
+    {% show_form form title text_button %}
+{% endblock context %}
+

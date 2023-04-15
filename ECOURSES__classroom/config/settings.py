@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Other
+    'phonenumber_field',
+    'rangefilter',
     # My
     'accounts.apps.AccountsConfig',
     'classroom.apps.ClassroomConfig',
@@ -140,6 +143,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Custom Auth
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# Other app settings
+
+# PhoneNumber settings
+PHONENUMBER_DEFAULT_REGION = 'RU'
 
 # My settings
 
