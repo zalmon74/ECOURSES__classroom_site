@@ -80,6 +80,36 @@ class UserRegistrationModelForm(UserCreationForm):
             ])
         )
     )
+    url_vk = forms.URLField(
+        label='Ссылка на профиль в ВК',
+        required=False,
+        widget=forms.URLInput(
+            attrs={
+                'class': 'form-control border-0 p-4', 
+                'placeholder': 'Ссылка на профиль в ВК'
+            }
+        )
+    )
+    url_email = forms.URLField(
+        label='Ссылка на профиль почтового сервиса',
+        required=False,
+        widget=forms.URLInput(
+            attrs={
+                'class': 'form-control border-0 p-4', 
+                'placeholder': 'Ссылка на профиль почтового сервиса'
+            }
+        )
+    )
+    url_github = forms.URLField(
+        label='Ссылка на профиль в github',
+        required=False,
+        widget=forms.URLInput(
+            attrs={
+                'class': 'form-control border-0 p-4', 
+                'placeholder': 'Ссылка на профиль в github'
+            }
+        )
+    )
     
     class Meta:
         model = CustomUser
@@ -91,6 +121,9 @@ class UserRegistrationModelForm(UserCreationForm):
             'second_name',
             'surname',
             'role', 
+            'url_vk',
+            'url_email',
+            'url_github',
         )
         widgets = {
             'email': forms.EmailInput(
