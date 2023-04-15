@@ -77,7 +77,7 @@ def show_nav_bar(user: CustomUser) -> dict:
          ]
         },
         {'name': 'Связаться', 
-         'url_name': 'index', 
+         'url_name': 'contact_us', 
          'f_drop': False, 
          'lst_drop': []
         },
