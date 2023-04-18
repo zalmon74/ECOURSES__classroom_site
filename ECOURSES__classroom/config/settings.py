@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     # My
     'accounts.apps.AccountsConfig',
     'classroom.apps.ClassroomConfig',
+    'training_course.apps.TrainingCourseConfig',
 ]
 
 MIDDLEWARE = [
