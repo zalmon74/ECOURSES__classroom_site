@@ -152,6 +152,9 @@ PHONENUMBER_DEFAULT_REGION = 'RU'
 
 # My settings
 
+# Путь до каталога со стандартными картинками для различных моделей
+PATH_DIR_DEFAULT_IMAGE_DB = BASE_DIR.parent.joinpath('images_for_db')
+
 NAME_DB_ADMIN_GROUP = 'admin'
 NAME_ADMIN_GROUP = 'Администратор'
 NAME_DB_PARTNER_GROUP = 'partner'
