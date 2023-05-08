@@ -104,3 +104,80 @@ class TrainingCourseModel(models.Model):
         """
         return mark_safe('<img src="%s" width="100" height="50" />' % (self.photo.url))
     
+    
+class MoreInformationAboutCourses(models.Model):
+    """ Дополнительная информация о курсе
+    """
+    course = models.OneToOneField(
+        TrainingCourseModel,
+        on_delete=models.PROTECT,
+        verbose_name='Курс',
+        help_text='Курс, к которому относится дополнительная информация'
+    )
+    description = models.TextField(verbose_name='Описание курса')
+    course_program = models.TextField(
+        verbose_name='Программа курса',
+        help_text='План, по которому будут заниматься ученики (студенты)',
+    )
+    
+    class Meta:
+        verbose_name = 'Дополнительна информация о курсе'
+        verbose_name_plural = 'Дополнительна информация о курсах'
+    
+    def __str__(self) -> str:
+        return f'Курс "{self.course.name}" - дополнительная информация'
+    
+
+class ReviewCourse(models.Model):
+    """ Отзыв к курсу
+    """
+    course = models.ForeignKey(
+        TrainingCourseModel,
+        on_delete=models.PROTECT,
+        verbose_name='Курс',
+        help_text='Курс, к которому пишется отзыв',
+    )
+    author = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.PROTECT,
+        verbose_name='Автор отзыва'
+    )
+    grade = models.PositiveSmallIntegerField(
+        verbose_name='Оценка',
+        help_text='Может имееть значение от 1 до 10',
+    )
+    grade_comment = models.TextField(
+        verbose_name='Комментарий',
+        help_text='Может быть пустым',
+        blank=True,
+    )
+    f_deleted = models.BooleanField(
+        default=False,
+        verbose_name='Флаг удаленного комментарий',
+        help_text='Устанавливается, когда комментарий удаляется администратором',
+    )
+    created = models.DateField(
+        verbose_name='Дата создания отзыва',
+        auto_now_add=True,
+    )
+    updated = models.DateField(
+        verbose_name='Дата последнего редактирования',
+        auto_now=True,
+    )
+    
+    class Meta:
+        verbose_name = 'Отзыв к курсу'
+        verbose_name_plural = 'Отзывы к курсам'
+        
+        unique_together = ('course', 'author',)
+        
+        constraints = [
+            CheckConstraint(
+                check=Q(grade__gt=0) & Q(grade__lt=11),
+                name='check_grade__gt_0_and__lt_11',
+                violation_error_message='Оценка может иметь диапозон значений от 1 до 10',
+            ),            
+        ]
+
+    def __str__(self) -> str:
+        return f'Отзыв к курсу "{self.course.name}" от "{self.author}"'

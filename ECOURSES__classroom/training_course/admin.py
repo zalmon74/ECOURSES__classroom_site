@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.safestring import SafeText
 from rangefilter.filters import DateRangeFilterBuilder
 
-from .models import Category, Tag, TrainingCourseModel
+from .models import *
 
 
 @admin.register(Category)
@@ -26,6 +26,13 @@ class TagAdminModel(admin.ModelAdmin):
     list_display_links = ('name', 'name_visible')
     
     search_fields = ('name', 'name_visible')
+
+
+class MoreInformationAboutCoursesInline(admin.StackedInline):
+    model = MoreInformationAboutCourses
+    
+    fields = ['description', 'course_program']
+    readonly_fields = ['description', 'course_program']
 
 
 @admin.register(TrainingCourseModel)
@@ -65,7 +72,29 @@ class TrainingCourseAdminModel(admin.ModelAdmin):
         'category__name', 'category__name_visible',
         'tags__name', 'tags__name_visible',
     )
+    
+    inlines = [MoreInformationAboutCoursesInline, ]
                           
     def has_add_permission(self, request):
         return False
 
+
+@admin.register(ReviewCourse)
+class ReviewCourseAdminModel(admin.ModelAdmin):
+    
+    list_display = ['id', 'course', 'author', 'grade', 'f_deleted', 'updated', 'created',]
+    list_display_links = ['course', 'author', 'grade',]
+    
+    readonly_fields = [el.name for el in ReviewCourse._meta.fields] + \
+                      [el.name for el in ReviewCourse._meta.many_to_many]
+    
+    list_filter = [
+        ('updated', DateRangeFilterBuilder()),
+        ('created', DateRangeFilterBuilder()),
+        'f_deleted',
+        'grade',
+    ]
+    search_fields = ['corse', 'author', 'grade',]
+
+    def has_add_permission(self, request):
+        return False
