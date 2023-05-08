@@ -43,7 +43,7 @@ class TrainingCourseAdminModel(admin.ModelAdmin):
     list_display_links = ('name', 'author', 'category')
 
     fieldsets = (
-        ('Информация о курсе', {'fields': ('name', 'author', 'category', 'tags', 'price', 'f_stop',)}),
+        ('Информация о курсе', {'fields': ('photo', 'name', 'author', 'category', 'tags', 'price', 'f_stop',)}),
         ('Учителя', {'fields': ('max_count_teachers', 'teachers')}),
         ('Студенты', {'fields': ('max_count_students', 'students')}),
         ('Даты', {'fields': ('datetime_course_start', 'datetime_course_end', 'created')}),

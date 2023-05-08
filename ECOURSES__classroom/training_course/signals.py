@@ -45,7 +45,10 @@ def create_default_categories(
         obj.save()
         # Коприуем картинку в media
         path_media_image = Path(str(settings.MEDIA_ROOT) + '/' + photo_media)
-        path_media_image.parent.mkdir(parents=True)
+        try:
+            path_media_image.parent.mkdir(parents=True)
+        except FileExistsError: # Если каталог уже создан
+            pass
         path_image = str(path_dir_image_categories) + '/' + el[2]
         copy(path_image, path_media_image) 
     

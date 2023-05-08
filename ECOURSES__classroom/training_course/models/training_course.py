@@ -1,7 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models import CheckConstraint, F, Q
+from django.utils.safestring import SafeText, mark_safe
 
+from ..help_functions import courses_photo_upload_to
 from .category import Category
 from .tag import Tag
 
@@ -41,6 +43,11 @@ class TrainingCourseModel(models.Model):
         get_user_model(),
         related_name='trainingcourse_students',
         verbose_name='Студенты на курсе'
+    )
+    photo = models.ImageField(
+        upload_to=courses_photo_upload_to,
+        verbose_name='Фото для курса',
+        help_text='Изображение, которое будет отображаться в заголовке курса'
     )
     price = models.PositiveIntegerField(
         verbose_name='Цена за курс'
@@ -88,4 +95,12 @@ class TrainingCourseModel(models.Model):
 
     def __str__(self) -> str:
         return f'{self.name} - {self.author}'
+    
+    def image_tag(self) -> SafeText:
+        """ Формирует html-тег с изображением
+
+        Returns:
+            SafeText: Сформированный тег
+        """
+        return mark_safe('<img src="%s" width="100" height="50" />' % (self.photo.url))
     
