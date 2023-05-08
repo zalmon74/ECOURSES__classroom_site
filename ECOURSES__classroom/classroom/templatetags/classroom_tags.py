@@ -1,6 +1,7 @@
 from accounts.models import CustomUser
 from django import template
 from django.conf import settings
+from training_course.models import Category
 
 register = template.Library()
 
@@ -82,44 +83,16 @@ def show_nav_bar(user: CustomUser) -> dict:
          'lst_drop': []
         },
     ]
-    nav_bar_subjects = [
-        {'name': 'Веб дизайн', 
-         'url_name': 'index', 
-         'f_drop': True, 
-         'lst_drop': [
-            {'name': 'HTML', 
-             'url_name': 'index', 
-             'f_drop': False, 
-             'lst_drop': []
-            },
-            {'name': 'CSS', 
-             'url_name': 'index', 
-             'f_drop': False, 
-             'lst_drop': []
-            },
-            {'name': 'jQuery', 
-             'url_name': 'index', 
-             'f_drop': False, 
-             'lst_drop': []
-            },
-         ]
-        },
-        {'name': 'Дизайн приложений', 
-         'url_name': 'index', 
-         'f_drop': False, 
-         'lst_drop': []
-        },
-        {'name': 'Тестирование', 
-         'url_name': 'index', 
-         'f_drop': False, 
-         'lst_drop': []
-        },
-        {'name': 'SEO', 
-         'url_name': 'index', 
-         'f_drop': False, 
-         'lst_drop': []
-        },
-    ]
+    nav_bar_subjects = []
+    for categoty in Category.objects.all():
+        nav_bar_subjects.append(
+            {
+                'name': categoty.name_visible,
+                'url_name': 'index',
+                'f_drop': False,
+                'lst_drop': [],
+            }
+        )
     return {
         'nav_bar': nav_bar, 
         'nav_bar_subjects': nav_bar_subjects, 
@@ -269,48 +242,16 @@ def show_index_categories() -> dict():
     Returns:
         dict: Словарь, который содержит список с элементами для страницы
     """
-    lst_categories = [
-        {'name': 'Веб дизайн',
-         'count_courses': 11,
-         'url_name': 'index',
-         'static_image': 'img/cat-1.jpg',
-        },
-        {'name': 'Разработка',
-         'count_courses': 22,
-         'url_name': 'index',
-         'static_image': 'img/cat-2.jpg',
-        },
-        {'name': 'Дизайн игр',
-         'count_courses': 33,
-         'url_name': 'index',
-         'static_image': 'img/cat-3.jpg',
-        },
-        {'name': 'Дизайн приложений',
-         'count_courses': 44,
-         'url_name': 'index',
-         'static_image': 'img/cat-4.jpg',
-        },
-        {'name': 'Маркетинг',
-         'count_courses': 55,
-         'url_name': 'index',
-         'static_image': 'img/cat-5.jpg',
-        },
-        {'name': 'Тестирование',
-         'count_courses': 66,
-         'url_name': 'index',
-         'static_image': 'img/cat-6.jpg',
-        },
-        {'name': 'Автор контента',
-         'count_courses': 77,
-         'url_name': 'index',
-         'static_image': 'img/cat-7.jpg',
-        },
-        {'name': 'SEO-продвижение',
-         'count_courses': 88,
-         'url_name': 'index',
-         'static_image': 'img/cat-8.jpg',
-        },
-    ]
+    lst_categories = []
+    for category in Category.objects.all()[:8]:
+        lst_categories.append(
+            {
+                'name': category.name_visible,
+                'count_courses': category.trainingcoursemodel_set.count(),
+                'url_name': 'index',
+                'image': category.photo.url,
+            }
+        )
     return {'lst_categories': lst_categories}
 
 

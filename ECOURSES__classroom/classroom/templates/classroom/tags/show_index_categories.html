@@ -7,11 +7,10 @@
             <h1>Исследуйте популярные направления</h1>
         </div>
         <div class="row">
-            
             {% for el in lst_categories %}
                 <div class="col-lg-3 col-md-6 mb-4">
                     <div class="cat-item position-relative overflow-hidden rounded mb-2">
-                        <img class="img-fluid" src="{% static el.static_image %}" alt="">
+                        <img class="img-fluid" src="{{ el.image }}" alt="" width="450px" height="150px">
                         <a class="cat-overlay text-white text-decoration-none" href="">
                             <h4 class="text-white font-weight-medium">{{ el.name }}</h4>
                             <span>{{ el.count_courses }} курсов</span>
