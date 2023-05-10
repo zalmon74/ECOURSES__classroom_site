@@ -173,3 +173,62 @@ def create_defaults_administrators(
     for el in all_administrators:
         create_obj_customuser_with_photo_and_save_db(el, path_dir_image_administrators)        
         
+
+def create_defaults_partners(
+    sender: ModelBase, 
+    *args: list[Any],
+    **kwargs: dict[Any]
+) -> None:
+    """ Создание по умолчанию партнеров
+
+    Args:
+        sender (ModelBase): Класс, который добавляется в БД
+    """
+    # Формируем путь для фото для профиля
+    path_dir_image_partners = settings.PATH_DIR_DEFAULT_IMAGE_DB.joinpath('accounts').joinpath('partners')
+    # Список, который хранит данные для создания объектов
+    all_partners = [
+        (
+            settings.NAME_DB_PARTNER_GROUP,  # role
+            'user1@partner.ru',  # email
+            'user1',  # password
+            'Первый',  # first_name
+            'Партнер',  # second_name
+            'partner1.png',  # name_file_for_photo
+        ),
+        (
+            settings.NAME_DB_PARTNER_GROUP,  # role
+            'user2@partner.ru',  # email
+            'user1',  # password
+            'Второй',  # first_name
+            'Партнер',  # second_name
+            'partner2.png',  # name_file_for_photo
+        ),
+        (
+            settings.NAME_DB_PARTNER_GROUP,  # role
+            'user3@partner.ru',  # email
+            'user3',  # password
+            'Третий',  # first_name
+            'Партнер',  # second_name
+            'partner3.png',  # name_file_for_photo
+        ),
+        (
+            settings.NAME_DB_PARTNER_GROUP,  # role
+            'user4@partner.ru',  # email
+            'user4',  # password
+            'Четвертый',  # first_name
+            'Партнер',  # second_name
+            'partner4.png',  # name_file_for_photo
+        ),
+        (
+            settings.NAME_DB_PARTNER_GROUP,  # role
+            'user5@partner.ru',  # email
+            'user5',  # password
+            'Пятый',  # first_name
+            'Партнер',  # second_name
+            'partner5.png',  # name_file_for_photo
+        ),
+    ]
+    
+    for el in all_partners:
+        create_obj_customuser_with_photo_and_save_db(el, path_dir_image_partners)   
