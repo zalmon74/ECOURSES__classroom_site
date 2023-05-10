@@ -34,7 +34,7 @@ def user_registration(
         instance (CustomUser): Объект, который сохраняется в БД
         created (bool): флаг создания модели
     """
-    if created:
+    if created and hasattr(instance, 'role'):
         group = Group.objects.get(name=instance.role)
         instance.groups.add(group)
     
