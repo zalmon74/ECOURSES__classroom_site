@@ -44,6 +44,25 @@ def user_registration(
         instance.groups.clear()
         group = Group.objects.get(name=settings.NAME_DB_ADMIN_GROUP)
         instance.groups.add(group)
-        
 
 
+def create_default_superuser(
+    sender: ModelBase, 
+    *args: list[Any],
+    **kwargs: dict[Any]
+) -> None:
+    """ Создает стандартных Суперадминистраторов
+
+    Args:
+        sender (ModelBase): Класс, который добавляется в БД
+    """
+    all_superuser = [
+        (
+            'admin@admin.ru',  # email
+            'admin', # password
+            'Супер',  # first_name
+            'Администратор',  # second_name
+        ),
+    ]
+    for el in all_superuser:
+        CustomUser.objects.create_superuser(el[0], el[1], el[2], el[3])
