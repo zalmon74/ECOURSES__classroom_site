@@ -14,10 +14,12 @@ class AccountsConfig(AppConfig):
         from .signals import (create_default_all_groups,
                               create_default_superuser,
                               create_defaults_administrators,
-                              create_defaults_partners, user_registration)
+                              create_defaults_partners,
+                              create_defaults_students, user_registration)
         signals.post_migrate.connect(create_default_all_groups, sender=self)
         if settings.DEBUG:
             signals.post_migrate.connect(create_default_superuser, sender=self)
         signals.post_migrate.connect(create_defaults_administrators, sender=self)
         signals.post_migrate.connect(create_defaults_partners, sender=self)
+        signals.post_migrate.connect(create_defaults_students, sender=self)
         signals.post_save.connect(user_registration, sender=get_user_model())

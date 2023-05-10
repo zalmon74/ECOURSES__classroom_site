@@ -232,3 +232,63 @@ def create_defaults_partners(
     
     for el in all_partners:
         create_obj_customuser_with_photo_and_save_db(el, path_dir_image_partners)   
+
+
+def create_defaults_students(
+    sender: ModelBase, 
+    *args: list[Any],
+    **kwargs: dict[Any]
+) -> None:
+    """ Создание по умолчанию студентов
+
+    Args:
+        sender (ModelBase): Класс, который добавляется в БД
+    """
+    # Формируем путь для фото для профиля
+    path_dir_image_students = settings.PATH_DIR_DEFAULT_IMAGE_DB.joinpath('accounts').joinpath('students')
+    # Список, который хранит данные для создания объектов
+    all_students = [
+        (
+            settings.NAME_DB_PARTNER_GROUP,  # role
+            'user1@student.ru',  # email
+            'user1',  # password
+            'Первый',  # first_name
+            'Студент',  # second_name
+            'student1.png',  # name_file_for_photo
+        ),
+        (
+            settings.NAME_DB_PARTNER_GROUP,  # role
+            'user2@student.ru',  # email
+            'user1',  # password
+            'Второй',  # first_name
+            'Студент',  # second_name
+            'student2.png',  # name_file_for_photo
+        ),
+        (
+            settings.NAME_DB_PARTNER_GROUP,  # role
+            'user3@student.ru',  # email
+            'user3',  # password
+            'Третий',  # first_name
+            'Студент',  # second_name
+            'student3.png',  # name_file_for_photo
+        ),
+        (
+            settings.NAME_DB_PARTNER_GROUP,  # role
+            'user4@student.ru',  # email
+            'user4',  # password
+            'Четвертый',  # first_name
+            'Студент',  # second_name
+            'student4.png',  # name_file_for_photo
+        ),
+        (
+            settings.NAME_DB_PARTNER_GROUP,  # role
+            'user5@student.ru',  # email
+            'user5',  # password
+            'Пятый',  # first_name
+            'Студент',  # second_name
+            'student5.png',  # name_file_for_photo
+        ),
+    ]
+    
+    for el in all_students:
+        create_obj_customuser_with_photo_and_save_db(el, path_dir_image_students)   
