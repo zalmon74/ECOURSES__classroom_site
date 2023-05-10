@@ -136,6 +136,7 @@ original_template_site*
 !original_template_site_ECOURSES.zip
 images
 !databases_models/images
+images_for_db
 
 # Secrets
 .env

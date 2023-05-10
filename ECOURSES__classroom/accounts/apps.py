@@ -12,8 +12,11 @@ class AccountsConfig(AppConfig):
 
     def ready(self) -> None:
         from .signals import (create_default_all_groups,
-                              create_default_superuser, user_registration)
+                              create_default_superuser,
+                              create_defaults_administrators,
+                              user_registration)
         signals.post_migrate.connect(create_default_all_groups, sender=self)
         if settings.DEBUG:
             signals.post_migrate.connect(create_default_superuser, sender=self)
+        signals.post_migrate.connect(create_defaults_administrators, sender=self)
         signals.post_save.connect(user_registration, sender=get_user_model())
