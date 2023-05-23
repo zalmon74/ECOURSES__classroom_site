@@ -1,10 +1,13 @@
+import random
 from pathlib import Path
 from shutil import copy
+from string import ascii_letters
 from typing import Any
 
 from django.conf import settings
 from django.contrib.auth.models import Group
 from django.db.models.base import ModelBase
+from training_course.models import Category, MoreInformationAboutTeachers
 
 from .help_functions import user_photo_upload_to
 from .models import CustomUser, UserPhoto
@@ -74,7 +77,7 @@ def create_default_superuser(
 def create_obj_customuser_with_photo_and_save_db(
     data: tuple, 
     path_dir_with_photo: Path
-) -> None:
+) -> CustomUser:
     """ Функция создает объект с пользователем, а также объект с фото для его 
         профиля, после чего записывает объект в БД
 
@@ -112,6 +115,8 @@ def create_obj_customuser_with_photo_and_save_db(
         pass
     path_image = str(path_dir_with_photo) + '/' + data[5]
     copy(path_image, path_media_image) 
+
+    return obj
 
 
 def create_defaults_administrators(
@@ -292,3 +297,111 @@ def create_defaults_students(
     
     for el in all_students:
         create_obj_customuser_with_photo_and_save_db(el, path_dir_image_students)   
+
+
+def create_defaults_teachers(
+    sender: ModelBase, 
+    *args: list[Any],
+    **kwargs: dict[Any]
+) -> None:
+    """ Создание по умолчанию учителей
+
+    Args:
+        sender (ModelBase): Класс, который добавляется в БД
+    """
+    # Формируем путь для фото для профиля
+    path_dir_image_students = settings.PATH_DIR_DEFAULT_IMAGE_DB.joinpath('accounts').joinpath('teachers')
+    # Все категории
+    all_categories = Category.objects.all()    
+    # Список, который хранит данные для создания объектов
+    all_teachers = [
+        (
+          settings.NAME_DB_TEACHER_GROUP,  # role
+          'user1@teacher.ru',  # email
+          'user1',  # password
+          'Первый',  # first_name
+          'Учитель',  # second_name
+          'teacher1.jpg',  # name_file_for_photo
+          # more_information
+          all_categories.get(name='Backend'),  # category
+          'Backend-Разработчик',  # profession
+          ''.join(random.choice(ascii_letters + ' ') for _ in range(100)),  # education
+          ''.join(random.choice(ascii_letters + ' ') for _ in range(100)),  # experience
+          ''.join(random.choice(ascii_letters + ' ') for _ in range(100)),  # completed_courses
+          ''.join(random.choice(ascii_letters + ' ') for _ in range(100)),  # previously_supervised_courses
+        ),
+        (
+          settings.NAME_DB_TEACHER_GROUP,  # role
+          'user2@teacher.ru',  # email
+          'user2',  # password
+          'Второй',  # first_name
+          'Учитель',  # second_name
+          'teacher2.png',  # name_file_for_photo
+          # more_information
+          all_categories.get(name='Frontend'),  # category
+          'Frontend-Разработчик',  # profession
+          ''.join(random.choice(ascii_letters + ' ') for _ in range(100)),  # education
+          ''.join(random.choice(ascii_letters + ' ') for _ in range(100)),  # experience
+          ''.join(random.choice(ascii_letters + ' ') for _ in range(100)),  # completed_courses
+          ''.join(random.choice(ascii_letters + ' ') for _ in range(100)),  # previously_supervised_courses
+        ),
+        (
+          settings.NAME_DB_TEACHER_GROUP,  # role
+          'user3@teacher.ru',  # email
+          'user3',  # password
+          'Третий',  # first_name
+          'Учитель',  # second_name
+          'teacher3.jpg',  # name_file_for_photo
+          # more_information
+          all_categories.get(name='Mobile'),  # category
+          'Разработчик мобильного ПО',  # profession
+          ''.join(random.choice(ascii_letters + ' ') for _ in range(100)),  # education
+          ''.join(random.choice(ascii_letters + ' ') for _ in range(100)),  # experience
+          ''.join(random.choice(ascii_letters + ' ') for _ in range(100)),  # completed_courses
+          ''.join(random.choice(ascii_letters + ' ') for _ in range(100)),  # previously_supervised_courses
+        ),
+        (
+          settings.NAME_DB_TEACHER_GROUP,  # role
+          'user4@teacher.ru',  # email
+          'user4',  # password
+          'Четвертый',  # first_name
+          'Учитель',  # second_name
+          'teacher4.png',  # name_file_for_photo
+          # more_information
+          all_categories.get(name='Data Science'),  # category
+          'Специалист по данным',  # profession
+          ''.join(random.choice(ascii_letters + ' ') for _ in range(100)),  # education
+          ''.join(random.choice(ascii_letters + ' ') for _ in range(100)),  # experience
+          ''.join(random.choice(ascii_letters + ' ') for _ in range(100)),  # completed_courses
+          ''.join(random.choice(ascii_letters + ' ') for _ in range(100)),  # previously_supervised_courses
+        ),
+        (
+          settings.NAME_DB_TEACHER_GROUP,  # role
+          'user5@teacher.ru',  # email
+          'user5',  # password
+          'Пятый',  # first_name
+          'Учитель',  # second_name
+          'teacher5.jpg',  # name_file_for_photo
+          # more_information
+          all_categories.get(name='Digital Design'),  # category
+          'Цифрвой дизайнер',  # profession
+          ''.join(random.choice(ascii_letters + ' ') for _ in range(100)),  # education
+          ''.join(random.choice(ascii_letters + ' ') for _ in range(100)),  # experience
+          ''.join(random.choice(ascii_letters + ' ') for _ in range(100)),  # completed_courses
+          ''.join(random.choice(ascii_letters + ' ') for _ in range(100)),  # previously_supervised_courses
+        ),
+    ]
+    # Сохраняем данные в БД
+    for el in all_teachers:
+        user = create_obj_customuser_with_photo_and_save_db(el, path_dir_image_students)   
+        # Создаем доп. информацию об учетелях
+        more_info = MoreInformationAboutTeachers(
+            user=user,
+            category=el[6],
+            profession=el[7],
+            education=el[8],
+            experience=el[9],
+            completed_courses=el[10],
+            previously_supervised_courses=el[11],
+        )
+        more_info.save()
