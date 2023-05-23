@@ -98,3 +98,19 @@ class ReviewCourseAdminModel(admin.ModelAdmin):
 
     def has_add_permission(self, request):
         return False
+
+
+@admin.register(MoreInformationAboutTeachers)
+class MoreInformationAboutTeachersAdminModel(admin.ModelAdmin):
+    
+    list_display = ['id', 'user', 'profession', 'category',]
+    list_display_links = ['user', 'profession', 'category',]
+
+    readonly_fields = [el.name for el in MoreInformationAboutTeachers._meta.fields] + \
+                      [el.name for el in MoreInformationAboutTeachers._meta.many_to_many]
+    
+    list_filter = ['category', ]
+    search_fields = ['user', 'profession', 'category',]
+                          
+    def has_add_permission(self, request):
+        return False

@@ -47,9 +47,9 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'rangefilter',
     # My
+    'training_course.apps.TrainingCourseConfig',
     'accounts.apps.AccountsConfig',
     'classroom.apps.ClassroomConfig',
-    'training_course.apps.TrainingCourseConfig',
 ]
 
 MIDDLEWARE = [
