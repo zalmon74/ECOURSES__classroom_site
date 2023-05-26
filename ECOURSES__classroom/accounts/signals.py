@@ -254,7 +254,7 @@ def create_defaults_students(
     # Список, который хранит данные для создания объектов
     all_students = [
         (
-            settings.NAME_DB_PARTNER_GROUP,  # role
+            settings.NAME_DB_STUDENT_GROUP,  # role
             'user1@student.ru',  # email
             'user1',  # password
             'Первый',  # first_name
@@ -262,7 +262,7 @@ def create_defaults_students(
             'student1.png',  # name_file_for_photo
         ),
         (
-            settings.NAME_DB_PARTNER_GROUP,  # role
+            settings.NAME_DB_STUDENT_GROUP,  # role
             'user2@student.ru',  # email
             'user1',  # password
             'Второй',  # first_name
@@ -270,7 +270,7 @@ def create_defaults_students(
             'student2.png',  # name_file_for_photo
         ),
         (
-            settings.NAME_DB_PARTNER_GROUP,  # role
+            settings.NAME_DB_STUDENT_GROUP,  # role
             'user3@student.ru',  # email
             'user3',  # password
             'Третий',  # first_name
@@ -278,7 +278,7 @@ def create_defaults_students(
             'student3.png',  # name_file_for_photo
         ),
         (
-            settings.NAME_DB_PARTNER_GROUP,  # role
+            settings.NAME_DB_STUDENT_GROUP,  # role
             'user4@student.ru',  # email
             'user4',  # password
             'Четвертый',  # first_name
@@ -286,7 +286,7 @@ def create_defaults_students(
             'student4.png',  # name_file_for_photo
         ),
         (
-            settings.NAME_DB_PARTNER_GROUP,  # role
+            settings.NAME_DB_STUDENT_GROUP,  # role
             'user5@student.ru',  # email
             'user5',  # password
             'Пятый',  # first_name
