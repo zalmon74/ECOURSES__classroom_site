@@ -1,7 +1,7 @@
 from accounts.models import CustomUser
 from django import template
 from django.conf import settings
-from training_course.models import Category
+from training_course.models import Category, TrainingCourseModel
 
 register = template.Library()
 
@@ -257,68 +257,21 @@ def show_index_categories() -> dict():
 
 @register.inclusion_tag('classroom/tags/show_index_courses.html')
 def show_index_courses() -> dict:
-    lst_courses = [
-        {'name': 'Веб дизайн для начинающих',
-         'count_students': 30,
-         'datetime_start': "01.01.2023",
-         'datetime_end': "01.05.2023",
-         'review': 4.1,
-         'count_review': 123,
-         'price': 12345,
-         'url_name': 'index',
-         'static_image': 'img/course-1.jpg',
-        },
-        {'name': 'Веб дизайн для продвинутых',
-         'count_students': 20,
-         'datetime_start': "02.02.2023",
-         'datetime_end': "02.06.2023",
-         'review': 4.5,
-         'count_review': 12,
-         'price': 123456,
-         'url_name': 'index',
-         'static_image': 'img/course-2.jpg',
-        },
-        {'name': 'Веб дизайн для профессионалов',
-         'count_students': 10,
-         'datetime_start': "03.03.2023",
-         'datetime_end': "03.08.2023",
-         'review': 4.7,
-         'count_review': 123,
-         'price': 1234567,
-         'url_name': 'index',
-         'static_image': 'img/course-3.jpg',
-        },
-        {'name': 'Разработка для начинающих',
-         'count_students': 30,
-         'datetime_start': "01.01.2023",
-         'datetime_end': "01.05.2023",
-         'review': 4.1,
-         'count_review': 123,
-         'price': 12345,
-         'url_name': 'index',
-         'static_image': 'img/course-4.jpg',
-        },
-        {'name': 'Разработка для продвинутых',
-         'count_students': 20,
-         'datetime_start': "02.02.2023",
-         'datetime_end': "02.06.2023",
-         'review': 4.5,
-         'count_review': 12,
-         'price': 123456,
-         'url_name': 'index',
-         'static_image': 'img/course-5.jpg',
-        },
-        {'name': 'Разработка для профессионалов',
-         'count_students': 10,
-         'datetime_start': "03.03.2023",
-         'datetime_end': "03.08.2023",
-         'review': 4.7,
-         'count_review': 123,
-         'price': 1234567,
-         'url_name': 'index',
-         'static_image': 'img/course-6.jpg',
-        },
-    ]
+    lst_courses = []
+    for course in TrainingCourseModel.objects.all().order_by('?')[:6]:
+        lst_courses.append(
+            {
+                'name': course.name,
+                'count_students': course.max_count_students,
+                'datetime_start': course.datetime_course_start,
+                'datetime_end': course.datetime_course_end,
+                'review': 0,
+                'count_review': 0,
+                'price': course.price,
+                'url_name': 'index',
+                'photo': course.photo.url,
+            }
+        )
     return {'lst_courses': lst_courses,}
 
 
