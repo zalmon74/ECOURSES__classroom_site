@@ -9,6 +9,9 @@ class TrainingCourseConfig(AppConfig):
     verbose_name = 'Учебные курсы'
 
     def ready(self) -> None:
-        from .signals import create_default_categories, create_default_tags
+        from .signals import (create_default_categories, create_default_tags,
+                              create_default_trainingcourses)
+
         signals.post_migrate.connect(create_default_categories, sender=self)
         signals.post_migrate.connect(create_default_tags, sender=self)
+        signals.post_migrate.connect(create_default_trainingcourses, sender=self)
