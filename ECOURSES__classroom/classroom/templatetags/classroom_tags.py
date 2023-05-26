@@ -1,6 +1,7 @@
 from accounts.models import CustomUser
 from django import template
 from django.conf import settings
+from django.contrib.auth.models import Group
 from training_course.models import Category, TrainingCourseModel
 
 register = template.Library()
@@ -282,36 +283,17 @@ def show_index_our_teachers() -> dict:
     Returns:
         dict: Словарь, который содержит список с элементами для страницы
     """
-    teachers = [
-        {'name': 'Джули Джо',
-         'profession': 'Веб дизайнер',
-         'static_image': 'img/team-1.jpg',
-         'href_vk': 'https://vk.com/',
-         'href_mail': 'https://gmail.com/',
-         'href_github': 'https://github.com/'
-        },
-        {'name': 'Джон Дое',
-         'profession': 'Разработчик',
-         'static_image': 'img/team-2.jpg',
-         'href_vk': 'https://vk.com/',
-         'href_mail': 'https://gmail.com/',
-         'href_github': 'https://github.com/'
-        },
-        {'name': 'Редйджин Шру',
-         'profession': 'QA',
-         'static_image': 'img/team-3.jpg',
-         'href_vk': 'https://vk.com/',
-         'href_mail': 'https://gmail.com/',
-         'href_github': 'https://github.com/'
-        },
-        {'name': 'Брайн Дро',
-         'profession': 'Dev-ops инженер',
-         'static_image': 'img/team-4.jpg',
-         'href_vk': 'https://vk.com/',
-         'href_mail': 'https://gmail.com/',
-         'href_github': 'https://github.com/'
-        },
-    ]
+    teachers = []
+    for teacher in Group.objects.get(name=settings.NAME_DB_TEACHER_GROUP).user_set.all().order_by('?')[:4]:
+        teachers.append(
+            {'name': teacher.get_full_name(),
+             'profession': teacher.moreinformationaboutteachers.profession,
+             'photo': teacher.userphoto.photo.url,
+             'href_vk': teacher.url_vk,
+             'href_mail': teacher.url_email,
+             'href_github': teacher.url_github,
+            },
+        )
     return {'teachers': teachers}
 
 
