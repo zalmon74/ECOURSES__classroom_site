@@ -1,5 +1,7 @@
 from django.db import models
 
+from .category import Category
+
 
 class Tag(models.Model):
     """ Описывает Тег на сайте
@@ -13,6 +15,11 @@ class Tag(models.Model):
         max_length=50, 
         verbose_name='Наименование тега, которое будет видель пользователи', 
         unique=True
+    )
+    categories = models.ManyToManyField(
+        Category,
+        verbose_name='Категория',
+        help_text='К какой категории относится тег',
     )
     
     class Meta:
