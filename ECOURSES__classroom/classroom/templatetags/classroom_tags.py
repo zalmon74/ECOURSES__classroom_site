@@ -53,7 +53,7 @@ def show_nav_bar(user: CustomUser) -> dict:
          'lst_drop': []
         },
         {'name': 'Курсы', 
-         'url_name': 'index', 
+         'url_name': 'all_courses', 
          'f_drop': False, 
          'lst_drop': []
         },
@@ -236,15 +236,23 @@ def show_index_about() -> dict():
 
 
 @register.inclusion_tag('classroom/tags/show_index_categories.html')
-def show_index_categories() -> dict():
+def show_index_categories(count: int = None) -> dict():
     """ Формирует список с данными для "популярные направления" на главной 
         странице
+
+    Args:
+        count (int): Количество категорий, которое необходимо вывести.
+            Defaults to None.
 
     Returns:
         dict: Словарь, который содержит список с элементами для страницы
     """
+    if count and count > 0:
+        categories = Category.objects.all().order_by('?')[:count]
+    else:
+         categories = Category.objects.all()
     lst_categories = []
-    for category in Category.objects.all()[:8]:
+    for category in categories:
         lst_categories.append(
             {
                 'name': category.name_visible,
@@ -257,9 +265,22 @@ def show_index_categories() -> dict():
 
 
 @register.inclusion_tag('classroom/tags/show_index_courses.html')
-def show_index_courses() -> dict:
+def show_index_courses(count: int = None) -> dict:
+    """ Формирует список с данными о "курсах" на главной странице
+
+    Args:
+        count (int): Количество курсов, которое необходимо вывести.
+            Defaults to None.
+
+    Returns:
+        dict: Словарь, который содержит список с элементами для страницы
+    """
+    if count and count > 0:
+        courses = TrainingCourseModel.objects.all().order_by('?')[:count]
+    else:
+        courses = TrainingCourseModel.objects.all().order_by('?')[:count]
     lst_courses = []
-    for course in TrainingCourseModel.objects.all().order_by('?')[:6]:
+    for course in courses:
         lst_courses.append(
             {
                 'name': course.name,
