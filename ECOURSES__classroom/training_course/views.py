@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from django.views.generic import TemplateView
 
-# Create your views here.
+
+class CoursesList(TemplateView):
+    """ Вьюшка для страницы со всеми курсами
+    """
+    
+    template_name = 'training_course/courses_list.html'
+

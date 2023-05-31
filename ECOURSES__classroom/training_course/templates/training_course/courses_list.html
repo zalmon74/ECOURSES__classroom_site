@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load classroom_tags %}
+
+{% block title %}{{ title }} | ECOURSES{% endblock title %}
+
+{% block header_context %}{% endblock header_context %}
+
+{% block context %}
+<!-- Category Start -->
+{% show_index_categories %}
+<!-- Category Start -->
+
+
+<!-- Courses Start -->
+{% show_index_courses %}
+<!-- Courses End -->
+{% endblock context %}
