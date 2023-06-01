@@ -8,12 +8,42 @@
 {% block header_context %}{% endblock header_context %}
 
 {% block context %}
-<!-- Category Start -->
-{% show_index_categories %}
-<!-- Category Start -->
 
 
 <!-- Courses Start -->
-{% show_index_courses %}
+
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h1>Наши курсы</h1>
+        </div>
+        <div class="row">
+
+            {% for el in all_courses %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="rounded overflow-hidden mb-2">
+                        <img class="img-fluid" src="{{ el.photo.url }}" alt="">
+                        <div class="bg-secondary p-4">
+                            <div class="d-flex justify-content-between mb-3">
+                                <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>{{ el.max_count_students }} ({{ el.students.count }}) студентов</small>
+                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>{{ el.datetime_course_start|date:'d.m.y' }} - {{ el.datetime_course_end|date:'d.m.y' }}</small>
+                            </div>
+                            <a class="h5" href="">{{ el.name }}</a>
+                            <div class="border-top mt-4 pt-4">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>{{ el.review_mean_grade }} <small>({{ el.count_review }})</small></h6>
+                                    <h5 class="m-0">{{ el.price }} Р.</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            {% endfor %}
+            
+        </div>
+    </div>
+</div>
+
+
 <!-- Courses End -->
 {% endblock context %}
